@@ -3,6 +3,3 @@ server:
 spring:
   datasource:
       url: jdbc:sqlite:blog-test.db
-  jpa:
-      hibernate:
-        ddl-auto: create
