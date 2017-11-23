@@ -1,0 +1,36 @@
+server:
+  port: 8888
+spring:
+  profiles:
+      active: default
+  datasource:
+    url: jdbc:sqlite:blog.db
+    driver-class-name: org.sqlite.JDBC
+    druid:
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      filters: stat,slf4j
+      filter:
+        stat:
+          log-slow-sql: true
+      web-stat-filter:
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      stat-view-servlet:
+        login-username: druid
+        login-password: druid
+      aop-patterns: com.jiapengcs.blog.alpha.boot.*
+  jpa:
+    show-sql: true
+    database-platform: com.enigmabridge.hibernate.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: validate
+  aop:
+    proxy-target-class: true
