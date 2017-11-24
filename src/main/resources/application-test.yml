@@ -2,4 +2,6 @@ server:
   port: 8081
 spring:
   datasource:
-      url: jdbc:sqlite:blog-test.db
+    url: jdbc:sqlite:blog-test.db
+  jpa:
+    show-sql: true

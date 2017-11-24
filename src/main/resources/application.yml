@@ -1,8 +1,8 @@
 server:
-  port: 8888
+  port: 8080
 spring:
   profiles:
-      active: default
+    active: default
   datasource:
     url: jdbc:sqlite:blog.db
     driver-class-name: org.sqlite.JDBC
@@ -28,7 +28,7 @@ spring:
         login-password: druid
       aop-patterns: com.jiapengcs.blog.alpha.boot.*
   jpa:
-    show-sql: true
+    show-sql: false
     database-platform: com.enigmabridge.hibernate.dialect.SQLiteDialect
     hibernate:
       ddl-auto: none

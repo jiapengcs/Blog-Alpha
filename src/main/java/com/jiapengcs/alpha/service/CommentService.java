@@ -1,5 +1,7 @@
 package com.jiapengcs.alpha.service;
 
+import com.jiapengcs.alpha.model.Comment;
+
 import java.util.List;
 
 /**
@@ -7,6 +9,8 @@ import java.util.List;
  * @version V1.0
  * date: 2017/11/23
  */
-public interface CommentService {
-    List get();
+public interface CommentService extends BaseService<Comment> {
+
+    Comment findByVistorName(String vistorName);
+
 }
