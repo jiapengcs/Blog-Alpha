@@ -9,5 +9,5 @@ import org.springframework.data.repository.Repository;
  * @version V1.0
  * date: 2017/11/23
  */
-public interface OptionDAO extends Repository<Option, Integer> {
+public interface OptionDAO extends JpaRepository<Option, Integer> {
 }

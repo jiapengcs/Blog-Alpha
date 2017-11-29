@@ -9,8 +9,15 @@ import java.util.List;
  * @version V1.0
  * date: 2017/11/23
  */
-public interface CommentService extends BaseService<Comment> {
+public interface CommentService {
 
-    Comment findByVistorName(String vistorName);
+    Comment saveComment(Comment comment);
 
+    void deleteComment(Integer coid);
+
+    Comment updateComment(Comment comment);
+
+    Comment getComment(Integer coid);
+
+    List<Comment> getAllComment();
 }

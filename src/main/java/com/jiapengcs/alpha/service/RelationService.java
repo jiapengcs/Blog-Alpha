@@ -6,4 +6,5 @@ package com.jiapengcs.alpha.service;
  * date: 2017/11/23
  */
 public interface RelationService {
+
 }

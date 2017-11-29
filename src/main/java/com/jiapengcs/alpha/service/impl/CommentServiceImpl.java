@@ -12,12 +12,11 @@ import org.springframework.stereotype.Service;
  * date: 2017/11/24
  */
 @Service
-public class CommentServiceImpl extends BaseServiceImpl<Comment> implements CommentService {
+public class CommentServiceImpl implements CommentService {
 
     @Autowired
     private CommentDAO commentDAO;
 
-    @Override
     public Comment findByVistorName(String vistorName) {
         return commentDAO.findByVisitorName(vistorName);
     }

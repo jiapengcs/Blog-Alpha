@@ -9,7 +9,7 @@ import org.springframework.data.repository.Repository;
  * @version V1.0
  * date: 2017/11/23
  */
-public interface UserDAO extends Repository<User, Integer> {
+public interface UserDAO extends JpaRepository<User, Integer> {
 
     User findByUsername(String username);
 }

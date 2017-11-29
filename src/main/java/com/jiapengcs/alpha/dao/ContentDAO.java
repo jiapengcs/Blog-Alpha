@@ -9,5 +9,5 @@ import org.springframework.data.repository.Repository;
  * @version V1.0
  * date: 2017/11/23
  */
-public interface ContentDAO extends Repository<Content, Integer> {
+public interface ContentDAO extends JpaRepository<Content, Integer> {
 }

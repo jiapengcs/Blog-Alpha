@@ -34,3 +34,6 @@ spring:
       ddl-auto: none
   aop:
     proxy-target-class: true
+  output:
+    ansi:
+      enabled: always
