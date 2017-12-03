@@ -1,6 +1,10 @@
 package com.jiapengcs.alpha.service;
 
 import com.jiapengcs.alpha.model.File;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 /**
  * @author Jiapeng
@@ -9,11 +13,15 @@ import com.jiapengcs.alpha.model.File;
  */
 public interface FileService {
 
-    File upload(File file);
+    File saveFile(File file);
 
-    void download(Integer fid);
+    void deleteFile(Long fid);
 
-    String getFilePath(Integer fid);
+    File updateFile(File file);
 
-    void deleteFile();
+    void getFile(Long fid);
+
+    List<File> listAllFiles();
+
+    Page<File> listAllFilesByPage(Pageable pageable);
 }

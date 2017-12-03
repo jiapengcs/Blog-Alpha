@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   profiles:
-    active: default
+    active: test
   datasource:
     url: jdbc:sqlite:blog.db
     driver-class-name: org.sqlite.JDBC
@@ -37,3 +37,7 @@ spring:
   output:
     ansi:
       enabled: always
+alpha:
+  comment:
+    interval: 5000
+    times: 10

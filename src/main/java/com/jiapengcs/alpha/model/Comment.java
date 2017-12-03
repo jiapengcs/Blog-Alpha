@@ -19,16 +19,15 @@ public class Comment implements Serializable {
 
     @Id
     @GeneratedValue
-    private Integer coid;
+    private Long coid;
 
-    private Integer cid;
+    private Long cid;
 
     private String visitorName;
 
     @Email
     private String visitorEmail;
 
-    @URL
     private String visitorUrl;
 
     private String visitorIp;
@@ -37,9 +36,7 @@ public class Comment implements Serializable {
 
     private String comment;
 
-    private Integer replyTo;
-
-    private Integer root;
+    private Long root;
 
     private Timestamp createTime;
 
@@ -50,8 +47,8 @@ public class Comment implements Serializable {
     public Comment() {
     }
 
-    public Comment(Integer cid, String visitorName, String visitorEmail, String visitorUrl, String visitorIp, String userAgent,
-                   String comment, Integer replyTo, Integer root, Timestamp createTime, Timestamp updateTime, String status) {
+    public Comment(Long cid, String visitorName, String visitorEmail, String visitorUrl, String visitorIp, String userAgent,
+                   String comment, Long root, Timestamp createTime, Timestamp updateTime, String status) {
         this.cid = cid;
         this.visitorName = visitorName;
         this.visitorEmail = visitorEmail;
@@ -59,26 +56,38 @@ public class Comment implements Serializable {
         this.visitorIp = visitorIp;
         this.userAgent = userAgent;
         this.comment = comment;
-        this.replyTo = replyTo;
         this.root = root;
         this.createTime = createTime;
         this.updateTime = updateTime;
         this.status = status;
     }
 
-    public Integer getCoid() {
+    public Comment(Long cid, String visitorName, String visitorEmail, String visitorUrl, String visitorIp,
+                   String userAgent, String comment, Long root, String status) {
+        this.cid = cid;
+        this.visitorName = visitorName;
+        this.visitorEmail = visitorEmail;
+        this.visitorUrl = visitorUrl;
+        this.visitorIp = visitorIp;
+        this.userAgent = userAgent;
+        this.comment = comment;
+        this.root = root;
+        this.status = status;
+    }
+
+    public Long getCoid() {
         return coid;
     }
 
-    public void setCoid(Integer coid) {
+    public void setCoid(Long coid) {
         this.coid = coid;
     }
 
-    public Integer getCid() {
+    public Long getCid() {
         return cid;
     }
 
-    public void setCid(Integer cid) {
+    public void setCid(Long cid) {
         this.cid = cid;
     }
 
@@ -130,19 +139,11 @@ public class Comment implements Serializable {
         this.comment = comment;
     }
 
-    public Integer getReplyTo() {
-        return replyTo;
-    }
-
-    public void setReplyTo(Integer replyTo) {
-        this.replyTo = replyTo;
-    }
-
-    public Integer getRoot() {
+    public Long getRoot() {
         return root;
     }
 
-    public void setRoot(Integer root) {
+    public void setRoot(Long root) {
         this.root = root;
     }
 
@@ -181,7 +182,6 @@ public class Comment implements Serializable {
                 ", visitorIp='" + visitorIp + '\'' +
                 ", userAgent='" + userAgent + '\'' +
                 ", comment='" + comment + '\'' +
-                ", replyTo=" + replyTo +
                 ", root=" + root +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +

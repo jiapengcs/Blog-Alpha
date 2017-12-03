@@ -19,7 +19,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue
-    private Integer uid;
+    private Long uid;
 
     private String username;
 
@@ -30,7 +30,6 @@ public class User implements Serializable {
     @Email
     private String userEmail;
 
-    @URL
     private String userUrl;
 
     private String userRole;
@@ -57,11 +56,11 @@ public class User implements Serializable {
         this.lastLogin = lastLogin;
     }
 
-    public Integer getUid() {
+    public Long getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
+    public void setUid(Long uid) {
         this.uid = uid;
     }
 

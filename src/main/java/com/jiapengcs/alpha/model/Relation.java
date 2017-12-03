@@ -1,8 +1,9 @@
 package com.jiapengcs.alpha.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -11,92 +12,56 @@ import java.io.Serializable;
  * date: 2017/11/23
  */
 @Entity
-@IdClass(Relation.CidMidMap.class)
 public class Relation implements Serializable {
 
     @Id
-    private Integer cid;
+    @GeneratedValue
+    private Long rid;
 
-    @Id
-    private Integer mid;
+    @NotNull
+    private Long cid;
+
+    @NotNull
+    private Long mid;
 
     public Relation() {
     }
 
-    public Relation(Integer cid, Integer mid) {
+    public Relation(Long cid, Long mid) {
         this.cid = cid;
         this.mid = mid;
     }
 
-    public Integer getCid() {
+    public Long getRid() {
+        return rid;
+    }
+
+    public void setRid(Long rid) {
+        this.rid = rid;
+    }
+
+    public Long getCid() {
         return cid;
     }
 
-    public void setCid(Integer cid) {
+    public void setCid(Long cid) {
         this.cid = cid;
     }
 
-    public Integer getMid() {
+    public Long getMid() {
         return mid;
     }
 
-    public void setMid(Integer mid) {
+    public void setMid(Long mid) {
         this.mid = mid;
     }
 
     @Override
     public String toString() {
         return "Relation{" +
-                "cid=" + cid +
+                "rid=" + rid +
+                ", cid=" + cid +
                 ", mid=" + mid +
                 '}';
-    }
-
-    /**
-     * to solve the union primary key problem
-     * equals() and hashCode() ought to be override
-     */
-    public static class CidMidMap implements Serializable {
-
-        private Integer cid;
-
-        private Integer mid;
-
-        public Integer getCid() {
-            return cid;
-        }
-
-        public void setCid(Integer cid) {
-            this.cid = cid;
-        }
-
-        public Integer getMid() {
-            return mid;
-        }
-
-        public void setMid(Integer mid) {
-            this.mid = mid;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (o == null || getClass() != o.getClass()) {
-                return false;
-            }
-
-            CidMidMap that = (CidMidMap) o;
-
-            return cid.equals(that.cid) && mid.equals(that.mid);
-        }
-
-        @Override
-        public int hashCode() {
-            int result = cid.hashCode();
-            result = 31 * result + mid.hashCode();
-            return result;
-        }
     }
 }

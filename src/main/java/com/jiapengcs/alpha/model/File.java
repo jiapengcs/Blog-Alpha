@@ -16,7 +16,7 @@ public class File implements Serializable {
 
     @Id
     @GeneratedValue
-    private Integer fid;
+    private Long fid;
 
     private String fileName;
 
@@ -24,14 +24,14 @@ public class File implements Serializable {
 
     private String filePath;
 
-    private Integer fileSize;
+    private Long fileSize;
 
     private Timestamp uploadTime;
 
     public File() {
     }
 
-    public File(String fileName, String fileType, String filePath, Integer fileSize, Timestamp uploadTime) {
+    public File(String fileName, String fileType, String filePath, Long fileSize, Timestamp uploadTime) {
         this.fileName = fileName;
         this.fileType = fileType;
         this.filePath = filePath;
@@ -39,11 +39,11 @@ public class File implements Serializable {
         this.uploadTime = uploadTime;
     }
 
-    public Integer getFid() {
+    public Long getFid() {
         return fid;
     }
 
-    public void setFid(Integer fid) {
+    public void setFid(Long fid) {
         this.fid = fid;
     }
 
@@ -71,11 +71,11 @@ public class File implements Serializable {
         this.filePath = filePath;
     }
 
-    public Integer getFileSize() {
+    public Long getFileSize() {
         return fileSize;
     }
 
-    public void setFileSize(Integer fileSize) {
+    public void setFileSize(Long fileSize) {
         this.fileSize = fileSize;
     }
 

@@ -16,7 +16,7 @@ public class Content implements Serializable {
 
     @Id
     @GeneratedValue
-    private Integer cid;
+    private Long cid;
 
     private String contentKey;
 
@@ -55,11 +55,11 @@ public class Content implements Serializable {
         this.hits = hits;
     }
 
-    public Integer getCid() {
+    public Long getCid() {
         return cid;
     }
 
-    public void setCid(Integer cid) {
+    public void setCid(Long cid) {
         this.cid = cid;
     }
 

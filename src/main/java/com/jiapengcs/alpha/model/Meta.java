@@ -16,7 +16,7 @@ public class Meta implements Serializable {
 
     @Id
     @GeneratedValue
-    private Integer mid;
+    private Long mid;
 
     private String metaType;
 
@@ -36,11 +36,11 @@ public class Meta implements Serializable {
         this.remark = remark;
     }
 
-    public Integer getMid() {
+    public Long getMid() {
         return mid;
     }
 
-    public void setMid(Integer mid) {
+    public void setMid(Long mid) {
         this.mid = mid;
     }
 

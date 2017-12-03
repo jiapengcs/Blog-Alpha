@@ -16,7 +16,7 @@ public class Option implements Serializable {
 
     @Id
     @GeneratedValue
-    private Integer oid;
+    private Long oid;
 
     private String optionKey;
 
@@ -39,11 +39,11 @@ public class Option implements Serializable {
         this.remark = remark;
     }
 
-    public Integer getOid() {
+    public Long getOid() {
         return oid;
     }
 
-    public void setOid(Integer oid) {
+    public void setOid(Long oid) {
         this.oid = oid;
     }
 

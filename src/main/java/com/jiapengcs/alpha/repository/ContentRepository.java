@@ -1,13 +1,12 @@
-package com.jiapengcs.alpha.dao;
+package com.jiapengcs.alpha.repository;
 
 import com.jiapengcs.alpha.model.Content;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.Repository;
 
 /**
  * @author Jiapeng
  * @version V1.0
  * date: 2017/11/23
  */
-public interface ContentDAO extends JpaRepository<Content, Integer> {
+public interface ContentRepository extends BaseRepository<Content, Long> {
 }

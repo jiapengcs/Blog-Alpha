@@ -13,10 +13,9 @@ CREATE TABLE IF NOT EXISTS comment (
     visitor_name  CHAR (16),
     visitor_email VARCHAR (128),
     visitor_url   VARCHAR (128),
-    visitor_ip    CHAR (16),
+    visitor_ip    VARCHAR (48),
     user_agent    VARCHAR (128),
     comment       VARCHAR (255),
-    reply_to      INTEGER,
     root          INTEGER,
     create_time   DATETIME,
     update_time   DATETIME,
@@ -42,12 +41,26 @@ CREATE TABLE IF NOT EXISTS content (
 
 -- 表：file
 CREATE TABLE IF NOT EXISTS file (
-  fid         INTEGER    PRIMARY KEY AUTOINCREMENT,
-  file_name   CHAR (64),
-  file_type   CHAR (16),
-  file_path   CHAR (128),
-  file_size   INTEGER,
-  upload_time DATETIME
+    fid         INTEGER    PRIMARY KEY AUTOINCREMENT,
+    file_name   CHAR (64),
+    file_type   CHAR (16),
+    file_path   CHAR (128),
+    file_size   INTEGER,
+    upload_time DATETIME
+);
+
+
+-- 表：log
+CREATE TABLE IF NOT EXISTS log (
+    lid         INTEGER       PRIMARY KEY AUTOINCREMENT,
+    uri         VARCHAR(128),
+    method      VARCHAR(255),
+    args        VARCHAR(255),
+    ip          VARCHAR(48),
+    exception   VARCHAR(255),
+    message     VARCHAR(255),
+    cost        INTEGER,
+    log_time    DATETIME
 );
 
 
@@ -74,12 +87,9 @@ CREATE TABLE IF NOT EXISTS option (
 
 -- 表：relation
 CREATE TABLE IF NOT EXISTS relation (
+    rid INTEGER PRIMARY KEY AUTOINCREMENT,
     cid INTEGER NOT NULL,
-    mid INTEGER NOT NULL,
-    PRIMARY KEY (
-        cid,
-        mid
-    )
+    mid INTEGER NOT NULL
 );
 
 
