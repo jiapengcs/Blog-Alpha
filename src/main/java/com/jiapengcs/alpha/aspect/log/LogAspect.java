@@ -59,8 +59,8 @@ public class LogAspect {
             String exception = throwable.getClass().getName();
             String message = throwable.getMessage();
             long end = System.currentTimeMillis();
-            LOGGER.error("service-error{method:\"{}\", args:\"{}\", exception:\"{}\", message:\"{}\", cost:\"{}ms\"}",
-                    method, Arrays.toString(args), exception, message, end - begin);
+            LOGGER.error("service-error{exception:\"{}\", message:\"{}\", method:\"{}\", args:\"{}\", cost:\"{}ms\"}",
+                    exception, message, method, Arrays.toString(args), end - begin);
             throw throwable;
         }
         return result;
@@ -86,8 +86,8 @@ public class LogAspect {
             long end = System.currentTimeMillis();
             Log log = new Log(uri, method, Arrays.toString(args), ip, exception, message, end - begin, new Timestamp(end));
             logRepository.save(log);
-            LOGGER.error("controller-error{uri:\"{}\", method:\"{}\", args:\"{}\", ip:\"{}\", exception:\"{}\", message:\"{}\", cost:\"{}ms\"}",
-                    uri, method, Arrays.toString(args), ip, exception, message, end - begin);
+            LOGGER.error("controller-error{exception:\"{}\", message:\"{}\", uri:\"{}\", method:\"{}\", args:\"{}\", ip:\"{}\", cost:\"{}ms\"}",
+                    exception, message, uri, method, Arrays.toString(args), ip, end - begin);
             throw throwable;
         }
         return result;
@@ -102,8 +102,8 @@ public class LogAspect {
         String message = e.getMessage();
         Log log = new Log(uri, "framework", null, ip, exception, message, 0L, new Timestamp(System.currentTimeMillis()));
         logRepository.save(log);
-        LOGGER.error("controller-error{uri:\"{}\", method:\"{}\", args:\"{}\", ip:\"{}\", exception:\"{}\", message:\"{}\", cost:\"{}ms\"}",
-                uri, "framework", null, ip, exception, message, 0);
+        LOGGER.error("controller-error{exception:\"{}\", message:\"{}\", uri:\"{}\", method:\"{}\", args:\"{}\", ip:\"{}\", cost:\"{}ms\"}",
+                exception, message, uri, "framework", null, ip, 0);
         e.printStackTrace();
     }
 }
