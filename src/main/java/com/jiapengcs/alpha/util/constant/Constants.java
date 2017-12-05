@@ -16,4 +16,12 @@ public class Constants {
     public static final long DEFAULT_COMMENT_INTERVAL = 30000;
 
     public static final int DEFAULT_COMMENT_TIMES = 30;
+
+    public static final String USER_ROLE_ADMIN = "ADMIN";
+
+    public static final String PASSWORD_SALT = "";
+
+    public static final String LOCK_FILE = "./register.lock";
+
+    public static final String LOCK_INFO = "Remove this file to enable register again.";
 }

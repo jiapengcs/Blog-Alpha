@@ -26,11 +26,11 @@ public class ErrorHandleController implements ErrorController {
 
     @RequestMapping("/error")
     public ResponseResult handleError(HttpServletRequest request) {
-        return new ResponseResult(ResponseCode.ERROR.getStatus(), ResponseCode.ERROR.getMessage(), request.getRequestURI());
+        return new ResponseResult(ResponseCode.NOT_FOUND.getStatus(), ResponseCode.NOT_FOUND.getMessage(), request.getRequestURI());
     }
 
     @RequestMapping("/error/block")
     public ResponseResult handleBlock(HttpServletRequest request) {
-        return new ResponseResult(ResponseCode.ERROR.getStatus(), "you are blocked, bro!",request.getRequestURI());
+        return new ResponseResult(ResponseCode.ERROR.getStatus(), "You are blocked, bro!",request.getRequestURI());
     }
 }

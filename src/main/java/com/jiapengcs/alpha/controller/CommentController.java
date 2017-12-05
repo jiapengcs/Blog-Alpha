@@ -30,7 +30,7 @@ public class CommentController {
     private CommentService commentService;
 
     @RequestMapping("/test")
-    public String test(HttpServletRequest request) throws PermissionException {
+    public String test(@RequestParam() Comment comment, HttpServletRequest request) throws PermissionException {
         String string = "";
         System.out.println(string);
 //        throw new PermissionException("Please login before this operation!");

@@ -1,5 +1,9 @@
 package com.jiapengcs.alpha.service;
 
+import com.jiapengcs.alpha.model.User;
+
+import java.io.IOException;
+
 /**
  * @author Jiapeng
  * @version V1.0
@@ -7,10 +11,21 @@ package com.jiapengcs.alpha.service;
  */
 public interface UserService {
 
-    void register();
+    /**
+     * the blog system currently supports single-user only
+     */
+    void register(User user) throws IOException;
 
-    void login(String username, String password);
+    /**
+     * check username and password, then set session
+     * @param username
+     * @param password
+     */
+    boolean login(String username, String password);
 
+    /**
+     * remove session
+     */
     void logout();
 
     /**

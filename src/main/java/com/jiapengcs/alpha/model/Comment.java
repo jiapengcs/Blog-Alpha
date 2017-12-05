@@ -47,21 +47,6 @@ public class Comment implements Serializable {
     public Comment() {
     }
 
-    public Comment(Long cid, String visitorName, String visitorEmail, String visitorUrl, String visitorIp, String userAgent,
-                   String comment, Long root, Timestamp createTime, Timestamp updateTime, String status) {
-        this.cid = cid;
-        this.visitorName = visitorName;
-        this.visitorEmail = visitorEmail;
-        this.visitorUrl = visitorUrl;
-        this.visitorIp = visitorIp;
-        this.userAgent = userAgent;
-        this.comment = comment;
-        this.root = root;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.status = status;
-    }
-
     public Comment(Long cid, String visitorName, String visitorEmail, String visitorUrl, String visitorIp,
                    String userAgent, String comment, Long root, String status) {
         this.cid = cid;

@@ -26,7 +26,7 @@ spring:
       stat-view-servlet:
         login-username: druid
         login-password: druid
-      aop-patterns: com.jiapengcs.blog.alpha.boot.*
+      aop-patterns: com.jiapengcs.alpha.*
   jpa:
     show-sql: false
     database-platform: com.enigmabridge.hibernate.dialect.SQLiteDialect

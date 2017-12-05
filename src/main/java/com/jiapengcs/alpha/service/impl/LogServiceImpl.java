@@ -22,7 +22,8 @@ public class LogServiceImpl implements LogService {
     private LogRepository repository;
 
     @Override
-    public Page<Log> listAllContentsByPage(Pageable pageable) {
-        return repository.findAll(pageable);
+    public Page<Log> listAllLogsByPage(Pageable pageable) {
+        Page<Log> page = repository.findAll(pageable);
+        return page;
     }
 }

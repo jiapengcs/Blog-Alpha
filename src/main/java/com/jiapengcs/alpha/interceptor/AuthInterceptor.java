@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
  * date: 17-12-2
  */
 @Component
-public class AdminInterceptor implements HandlerInterceptor {
+public class AuthInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
@@ -23,7 +23,7 @@ public class AdminInterceptor implements HandlerInterceptor {
         if (session.getAttribute(Constants.SESSION_ADMIN) != null) {
             return true;
         }
-        httpServletResponse.sendRedirect("/admin/login");
+        httpServletResponse.sendRedirect("/login");
         return false;
     }
 

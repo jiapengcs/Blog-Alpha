@@ -43,17 +43,12 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String username, String password, String nickname, String userEmail, String userUrl,
-                String userRole, Timestamp createTime, Timestamp updateTime, Timestamp lastLogin) {
+    public User(String username, String password, String nickname, String userEmail, String userUrl) {
         this.username = username;
         this.password = password;
         this.nickname = nickname;
         this.userEmail = userEmail;
         this.userUrl = userUrl;
-        this.userRole = userRole;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.lastLogin = lastLogin;
     }
 
     public Long getUid() {

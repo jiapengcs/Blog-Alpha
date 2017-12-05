@@ -12,7 +12,7 @@ import java.sql.Timestamp;
  * date: 2017/11/23
  */
 @Entity
-public class File implements Serializable {
+public class Attachment implements Serializable {
 
     @Id
     @GeneratedValue
@@ -24,19 +24,13 @@ public class File implements Serializable {
 
     private String filePath;
 
+    private String cdnPath;
+
     private Long fileSize;
 
     private Timestamp uploadTime;
 
-    public File() {
-    }
-
-    public File(String fileName, String fileType, String filePath, Long fileSize, Timestamp uploadTime) {
-        this.fileName = fileName;
-        this.fileType = fileType;
-        this.filePath = filePath;
-        this.fileSize = fileSize;
-        this.uploadTime = uploadTime;
+    public Attachment() {
     }
 
     public Long getFid() {
@@ -71,6 +65,14 @@ public class File implements Serializable {
         this.filePath = filePath;
     }
 
+    public String getCdnPath() {
+        return cdnPath;
+    }
+
+    public void setCdnPath(String cdnPath) {
+        this.cdnPath = cdnPath;
+    }
+
     public Long getFileSize() {
         return fileSize;
     }
@@ -89,11 +91,12 @@ public class File implements Serializable {
 
     @Override
     public String toString() {
-        return "File{" +
+        return "Attachment{" +
                 "fid=" + fid +
                 ", fileName='" + fileName + '\'' +
                 ", fileType='" + fileType + '\'' +
                 ", filePath='" + filePath + '\'' +
+                ", cdnPath='" + cdnPath + '\'' +
                 ", fileSize=" + fileSize +
                 ", uploadTime=" + uploadTime +
                 '}';

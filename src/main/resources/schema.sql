@@ -6,11 +6,23 @@
 PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
 
+-- 表：attachment
+CREATE TABLE IF NOT EXISTS attachment (
+    fid         INTEGER        PRIMARY KEY AUTOINCREMENT,
+    file_name   VARCHAR (64),
+    file_type   VARCHAR (16),
+    file_path   VARCHAR (255),
+    cdn_path    VARCHAR (255),
+    file_size   INTEGER,
+    upload_time DATETIME
+);
+
+
 -- 表：comment
 CREATE TABLE IF NOT EXISTS comment (
     coid          INTEGER       PRIMARY KEY AUTOINCREMENT,
     cid           INTEGER,
-    visitor_name  CHAR (16),
+    visitor_name  VARCHAR (16),
     visitor_email VARCHAR (128),
     visitor_url   VARCHAR (128),
     visitor_ip    VARCHAR (48),
@@ -19,7 +31,7 @@ CREATE TABLE IF NOT EXISTS comment (
     root          INTEGER,
     create_time   DATETIME,
     update_time   DATETIME,
-    status        CHAR (8) 
+    status        VARCHAR (16)
 );
 
 
@@ -30,23 +42,12 @@ CREATE TABLE IF NOT EXISTS content (
     title       VARCHAR (128),
     thumb_image VARCHAR (128),
     content     TEXT,
-    edit_type   CHAR (16),
-    format      CHAR (16),
+    edit_type   VARCHAR (16),
+    format      VARCHAR (16),
     create_time DATETIME,
     update_time DATETIME,
-    status      CHAR (8),
+    status      VARCHAR (16),
     hits        INTEGER
-);
-
-
--- 表：file
-CREATE TABLE IF NOT EXISTS file (
-    fid         INTEGER    PRIMARY KEY AUTOINCREMENT,
-    file_name   CHAR (64),
-    file_type   CHAR (16),
-    file_path   CHAR (128),
-    file_size   INTEGER,
-    upload_time DATETIME
 );
 
 
@@ -67,8 +68,8 @@ CREATE TABLE IF NOT EXISTS log (
 -- 表：meta
 CREATE TABLE IF NOT EXISTS meta (
     mid         INTEGER       PRIMARY KEY AUTOINCREMENT,
-    meta_type   CHAR (16),
-    meta_name   CHAR (32),
+    meta_type   VARCHAR (16),
+    meta_name   VARCHAR (32),
     create_time DATETIME,
     remark      VARCHAR (255) 
 );
@@ -77,11 +78,24 @@ CREATE TABLE IF NOT EXISTS meta (
 -- 表：option
 CREATE TABLE IF NOT EXISTS option (
     oid          INTEGER       PRIMARY KEY AUTOINCREMENT,
-    option_key   CHAR (32),
+    option_key   VARCHAR (32),
     option_value VARCHAR (128),
     create_time  DATETIME,
     expire_time  DATETIME,
     remark       VARCHAR (255)
+);
+
+
+-- 表：picture
+CREATE TABLE IF NOT EXISTS picture (
+    pid          INTEGER       PRIMARY KEY AUTOINCREMENT,
+    subject      VARCHAR (16),
+    location     VARCHAR (16),
+    description  VARCHAR (128),
+    file_path    VARCHAR (255),
+    cdn_path     VARCHAR (255),
+    film_time    DATETIME,
+    upload_time  DATETIME
 );
 
 
@@ -96,12 +110,12 @@ CREATE TABLE IF NOT EXISTS relation (
 -- 表：user
 CREATE TABLE IF NOT EXISTS user (
     uid             INTEGER       PRIMARY KEY AUTOINCREMENT,
-    username        CHAR (16),
-    password        CHAR (128),
-    nickname        CHAR (16),
+    username        VARCHAR (16),
+    password        VARCHAR (128),
+    nickname        VARCHAR (16),
     user_email      VARCHAR (128),
     user_url        VARCHAR (128),
-    user_role       CHAR (16),
+    user_role       VARCHAR (16),
     create_time     DATETIME,
     update_time     DATETIME,
     last_login      DATETIME

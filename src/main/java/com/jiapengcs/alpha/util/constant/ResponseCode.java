@@ -8,9 +8,11 @@ package com.jiapengcs.alpha.util.constant;
 public enum ResponseCode {
 
     SUCCESS(2000, "success"),
+    UNAUTHORIZED(4001, "unauthorized"),
     FORBIDDEN(4003, "forbidden"),
     NOT_FOUND(4004, "not found"),
-    ERROR(5000, "error");
+    DATA_ACCESS_ERROR(4014, "database exception"),
+    ERROR(5000, "internal server error");
 
     private int status;
 

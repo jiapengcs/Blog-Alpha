@@ -1,12 +1,18 @@
 package com.jiapengcs.alpha.controller;
 
-import com.jiapengcs.alpha.interceptor.LoginBean;
+import com.alibaba.fastjson.JSONObject;
+import com.jiapengcs.alpha.aspect.log.EnableLog;
+import com.jiapengcs.alpha.controller.wrapper.ResponseResultWrapper;
+import com.jiapengcs.alpha.exception.AuthException;
+import com.jiapengcs.alpha.model.User;
+import com.jiapengcs.alpha.service.impl.UserServiceImpl;
 import com.jiapengcs.alpha.util.constant.Constants;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * @author Jiapeng
@@ -14,26 +20,33 @@ import javax.servlet.http.HttpSession;
  * date: 17-12-3
  */
 @RestController
-@RequestMapping("/admin")
+@EnableLog
+@ResponseResultWrapper
 public class UserController {
 
-    @RequestMapping("/login")
-    public void login(@RequestParam String username, @RequestParam String password, HttpSession session) {
-        System.out.println("****** login ******");
-        session.setAttribute(Constants.SESSION_ADMIN, new LoginBean(username, password));
+    @Autowired
+    private UserServiceImpl userService;
+
+    @PostMapping("/register")
+    public void register(@RequestBody User user, HttpServletRequest request) throws IOException {
+        userService.register(user);
     }
 
-    @RequestMapping("/logout")
-    public void logout(HttpSession session) {
-        System.out.println("****** logout ******");
+    @PostMapping("/login")
+    public void login(@RequestBody JSONObject user, HttpServletRequest request) {
+        String username = user.getString("username");
+        String password = user.getString("password");
+        if (userService.login(username, password)) {
+            HttpSession session = request.getSession();
+            session.setAttribute(Constants.SESSION_ADMIN, username);
+        } else {
+            throw new AuthException("Check your username and password!");
+        }
+    }
+
+    @GetMapping("/logout")
+    public void logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
         session.removeAttribute(Constants.SESSION_ADMIN);
-    }
-
-    @RequestMapping("/index")
-    public LoginBean index(HttpSession session) {
-        System.out.println("****** index ******");
-        LoginBean loginBean = (LoginBean) session.getAttribute(Constants.SESSION_ADMIN);
-        System.out.println(loginBean);
-        return loginBean;
     }
 }

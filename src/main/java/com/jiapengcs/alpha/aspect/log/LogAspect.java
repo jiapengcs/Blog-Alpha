@@ -95,7 +95,6 @@ public class LogAspect {
 
     @Before(value = "execution(* com.jiapengcs.alpha.controller.handler.GlobalExceptionHandler.proceedException(..)) && args(e, request)", argNames = "e,request")
     public void proceedExceptionHandler(Exception e, HttpServletRequest request) {
-        Object result = null;
         String uri = request.getRequestURI();
         String ip = request.getRemoteAddr();
         String exception = e.getClass().getName();
@@ -104,6 +103,6 @@ public class LogAspect {
         logRepository.save(log);
         LOGGER.error("controller-error{exception:\"{}\", message:\"{}\", uri:\"{}\", method:\"{}\", args:\"{}\", ip:\"{}\", cost:\"{}ms\"}",
                 exception, message, uri, "framework", null, ip, 0);
-        e.printStackTrace();
+//        e.printStackTrace();
     }
 }

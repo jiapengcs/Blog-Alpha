@@ -16,5 +16,5 @@ public interface LogService {
      * @param pageable
      * @return
      */
-    Page<Log> listAllContentsByPage(Pageable pageable);
+    Page<Log> listAllLogsByPage(Pageable pageable);
 }
