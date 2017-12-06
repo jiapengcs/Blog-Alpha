@@ -1,5 +1,7 @@
 package com.jiapengcs.alpha.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,22 +20,20 @@ public class Meta implements Serializable {
     @GeneratedValue
     private Long mid;
 
+    @NotBlank
     private String metaType;
 
+    @NotBlank
     private String metaName;
 
     private Timestamp createTime;
 
-    private String remark;
-
     public Meta() {
     }
 
-    public Meta(String metaType, String metaName, Timestamp createTime, String remark) {
+    public Meta(String metaType, String metaName) {
         this.metaType = metaType;
         this.metaName = metaName;
-        this.createTime = createTime;
-        this.remark = remark;
     }
 
     public Long getMid() {
@@ -68,14 +68,6 @@ public class Meta implements Serializable {
         this.createTime = createTime;
     }
 
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
     @Override
     public String toString() {
         return "Meta{" +
@@ -83,7 +75,6 @@ public class Meta implements Serializable {
                 ", metaType='" + metaType + '\'' +
                 ", metaName='" + metaName + '\'' +
                 ", createTime=" + createTime +
-                ", remark='" + remark + '\'' +
                 '}';
     }
 }

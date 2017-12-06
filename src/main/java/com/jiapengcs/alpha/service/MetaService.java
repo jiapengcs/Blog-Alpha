@@ -15,7 +15,7 @@ public interface MetaService {
 
     void deleteMeta(Long mid);
 
-    Meta updateMeta(Meta meta);
+    Meta updateMeta(Long mid, String metaName);
 
     Meta getMeta(Long mid);
 
