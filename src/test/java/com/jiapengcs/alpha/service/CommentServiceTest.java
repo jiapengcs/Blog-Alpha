@@ -30,8 +30,7 @@ public class CommentServiceTest extends BlogAlphaApplicationTests {
     @Test
     @Transactional
     public void saveCommentTest() {
-        Comment comment = new Comment(2L, "Jiapeng", "jiapeng@gmail.com", "http://jiapengcs.com",
-                "127.0.0.1", "Chrome", "Nice article!", 0L, "public");
+        Comment comment = new Comment(2L, "Jiapeng", "jiapeng@gmail.com", "http://jiapengcs.com", "Nice article!", 0L);
         Comment newComment = commentService.saveComment(comment);
         Assert.assertTrue(newComment != null);
     }
@@ -40,13 +39,6 @@ public class CommentServiceTest extends BlogAlphaApplicationTests {
     @Transactional
     public void deleteCommentTest() throws DataAccessException {
         commentService.deleteComment(2L);
-    }
-
-    @Test
-    public void updateCommentTest() {
-        Comment comment = commentService.getComment(2L);
-        Comment newComment = commentService.updateComment(comment);
-        Assert.assertTrue(newComment != null);
     }
 
     @Test
@@ -63,8 +55,8 @@ public class CommentServiceTest extends BlogAlphaApplicationTests {
 
     @Test
     public void listAllCommentsByPageTest() {
-        Pageable pageable = new PageRequest(2, 2);
-        Page<Comment> page = commentService.listAllCommentsByPage(pageable);
+        PageRequest pageRequest = new PageRequest(2, 2);
+        Page<Comment> page = commentService.listAllCommentsByPage(pageRequest);
         Assert.assertTrue(page != null);
     }
 

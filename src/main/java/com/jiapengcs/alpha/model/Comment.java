@@ -1,6 +1,7 @@
 package com.jiapengcs.alpha.model;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.Entity;
@@ -23,6 +24,7 @@ public class Comment implements Serializable {
 
     private Long cid;
 
+    @NotBlank
     private String visitorName;
 
     @Email
@@ -42,22 +44,16 @@ public class Comment implements Serializable {
 
     private Timestamp updateTime;
 
-    private String status;
-
     public Comment() {
     }
 
-    public Comment(Long cid, String visitorName, String visitorEmail, String visitorUrl, String visitorIp,
-                   String userAgent, String comment, Long root, String status) {
+    public Comment(Long cid, String visitorName, String visitorEmail, String visitorUrl, String comment, Long root) {
         this.cid = cid;
         this.visitorName = visitorName;
         this.visitorEmail = visitorEmail;
         this.visitorUrl = visitorUrl;
-        this.visitorIp = visitorIp;
-        this.userAgent = userAgent;
         this.comment = comment;
         this.root = root;
-        this.status = status;
     }
 
     public Long getCoid() {
@@ -148,14 +144,6 @@ public class Comment implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     @Override
     public String toString() {
         return "Comment{" +
@@ -170,7 +158,6 @@ public class Comment implements Serializable {
                 ", root=" + root +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
-                ", status='" + status + '\'' +
                 '}';
     }
 }

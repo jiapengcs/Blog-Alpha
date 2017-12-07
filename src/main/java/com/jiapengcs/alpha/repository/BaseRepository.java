@@ -3,6 +3,8 @@ package com.jiapengcs.alpha.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.Repository;
 
@@ -15,7 +17,7 @@ import java.util.List;
  * date: 17-12-2
  */
 @NoRepositoryBean
-public interface BaseRepository<T, ID extends Serializable> extends Repository<T, ID> {
+public interface BaseRepository<T, ID extends Serializable> extends Repository<T, ID>, JpaSpecificationExecutor<T> {
 
     /**
      * insert or update a record, which depends on whether the record contains a primary key
@@ -78,6 +80,14 @@ public interface BaseRepository<T, ID extends Serializable> extends Repository<T
      * @return
      */
     Page<T> findAll(Pageable pageable);
+
+    /**
+     * select all of the records by conditional and paging query(includes sorting query)
+     * @param specification
+     * @param pageable
+     * @return
+     */
+    Page<T> findAll(Specification<T> specification, Pageable pageable);
 
     /**
      * determine whether the record for the given id exists

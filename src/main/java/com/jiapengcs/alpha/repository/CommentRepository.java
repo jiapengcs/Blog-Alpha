@@ -17,4 +17,10 @@ public interface CommentRepository extends BaseRepository<Comment, Long> {
      * @return
      */
     List<Comment> findAllByCid(Long cid);
+
+    /**
+     * delete all comments when the content which they attached to deleted
+     * @param cid
+     */
+    void deleteAllByCid(Long cid);
 }

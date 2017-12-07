@@ -1,6 +1,5 @@
 package com.jiapengcs.alpha.service;
 
-import com.jiapengcs.alpha.exception.DataAccessException;
 import com.jiapengcs.alpha.model.Comment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,9 +15,7 @@ public interface CommentService {
 
     Comment saveComment(Comment comment);
 
-    void deleteComment(Long coid) throws DataAccessException;
-
-    Comment updateComment(Comment comment);
+    void deleteComment(Long coid);
 
     Comment getComment(Long coid);
 
@@ -37,5 +34,5 @@ public interface CommentService {
      * @param cid the content id
      * @return
      */
-    List<Comment> listCommentsOfContent(Long cid) throws DataAccessException;
+    List<Comment> listCommentsOfContent(Long cid);
 }

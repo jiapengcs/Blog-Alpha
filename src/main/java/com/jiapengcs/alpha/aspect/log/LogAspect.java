@@ -93,7 +93,7 @@ public class LogAspect {
         return result;
     }
 
-    @Before(value = "execution(* com.jiapengcs.alpha.controller.handler.GlobalExceptionHandler.proceedException(..)) && args(e, request)", argNames = "e,request")
+    @Before(value = "execution(* com.jiapengcs.alpha.controller.handler.GlobalExceptionHandler.handleException(..)) && args(e, request)", argNames = "e,request")
     public void proceedExceptionHandler(Exception e, HttpServletRequest request) {
         String uri = request.getRequestURI();
         String ip = request.getRemoteAddr();

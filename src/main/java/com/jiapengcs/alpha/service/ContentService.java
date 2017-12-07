@@ -1,5 +1,6 @@
 package com.jiapengcs.alpha.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jiapengcs.alpha.model.Content;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,9 +16,13 @@ public interface ContentService {
 
     Content saveContent(Content content);
 
+    /**
+     * delete a content and its comments
+     * @param cid
+     */
     void deleteContent(Long cid);
 
-    Content updateContent(Content content);
+    Content updateContent(Long cid, JSONObject params);
 
     Content getContent(Long cid);
 
@@ -25,9 +30,13 @@ public interface ContentService {
 
     Page<Content> listAllContentsByPage(Pageable pageable);
 
-    Page<Content> listContentsByMidByPage(Long mid, Pageable pageable);
+    List<Content> listContentsByCids(List<Long> cids);
 
-    void setEditType(Long cid, String editType);
+    Page<Content> listContentsByCidsByPage(List<Long> cids, Pageable pageable);
 
-    void setStatus(Long cid, String status);
+    /**
+     * increase hits number
+     * @param cid
+     */
+    void increaseHits(Long cid);
 }

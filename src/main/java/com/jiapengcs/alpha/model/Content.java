@@ -1,5 +1,7 @@
 package com.jiapengcs.alpha.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,6 +22,7 @@ public class Content implements Serializable {
 
     private String contentKey;
 
+    @NotBlank
     private String title;
 
     private String thumbImage;
@@ -41,18 +44,13 @@ public class Content implements Serializable {
     public Content() {
     }
 
-    public Content(String contentKey, String title, String thumbImage, String content, String editType,
-                   String format, Timestamp createTime, Timestamp updateTime, String status, Integer hits) {
-        this.contentKey = contentKey;
+    public Content(String title, String thumbImage, String content, String editType, String format, String status) {
         this.title = title;
         this.thumbImage = thumbImage;
         this.content = content;
         this.editType = editType;
         this.format = format;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
         this.status = status;
-        this.hits = hits;
     }
 
     public Long getCid() {

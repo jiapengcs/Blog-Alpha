@@ -33,6 +33,10 @@ public class CommentServiceImpl implements CommentService {
     @EnableEmail
     @Override
     public Comment saveComment(Comment comment) {
+        Long cid = comment.getCid();
+        if (!contentRepository.exists(cid)) {
+            throw new DataAccessException("Save comment failed, content does not exist!");
+        }
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         comment.setCreateTime(timestamp);
         comment.setUpdateTime(timestamp);
@@ -40,18 +44,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void deleteComment(Long coid) throws DataAccessException {
+    public void deleteComment(Long coid) {
         if (!repository.exists(coid)) {
             throw new DataAccessException("Comment does not exist!");
         }
         repository.delete(coid);
-    }
-
-    @Override
-    public Comment updateComment(Comment comment) {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        comment.setUpdateTime(timestamp);
-        return repository.save(comment);
     }
 
     @Override
@@ -70,7 +67,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> listCommentsOfContent(Long cid) throws DataAccessException {
+    public List<Comment> listCommentsOfContent(Long cid) {
         if (!contentRepository.exists(cid)) {
             throw new DataAccessException("Query comments failed, content does not exist!");
         }

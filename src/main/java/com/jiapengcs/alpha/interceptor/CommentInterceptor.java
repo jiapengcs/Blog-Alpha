@@ -28,7 +28,6 @@ public class CommentInterceptor implements HandlerInterceptor {
     @Value("${alpha.comment.times}")
     private int maxTimes;
 
-    // TODO: limit by IP
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         HttpSession session = httpServletRequest.getSession();

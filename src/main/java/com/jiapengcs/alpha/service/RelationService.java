@@ -13,13 +13,9 @@ public interface RelationService {
 
     Relation saveRelation(Relation relation);
 
-    void deleteRelation(Relation relation);
+    void deleteRelation(Long rid);
 
-    Relation update(Relation relation);
-
-    Relation getRelation(Long rid);
-
-    boolean exists(Relation relation);
+    boolean exists(Long cid, Long mid);
 
     List<Long> listMidsByCid(Long cid);
 

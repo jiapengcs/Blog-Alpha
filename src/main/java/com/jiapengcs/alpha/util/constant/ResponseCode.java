@@ -12,6 +12,7 @@ public enum ResponseCode {
     FORBIDDEN(4003, "forbidden"),
     NOT_FOUND(4004, "not found"),
     DATA_ACCESS_ERROR(4014, "database exception"),
+    PARAMETER_ERROR(4022, "parameter error"),
     ERROR(5000, "internal server error");
 
     private int status;

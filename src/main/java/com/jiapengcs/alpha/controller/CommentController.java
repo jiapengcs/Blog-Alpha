@@ -1,19 +1,16 @@
 package com.jiapengcs.alpha.controller;
 
 import com.jiapengcs.alpha.aspect.log.EnableLog;
-import com.jiapengcs.alpha.exception.PermissionException;
+import com.jiapengcs.alpha.exception.ParameterException;
 import com.jiapengcs.alpha.model.Comment;
 import com.jiapengcs.alpha.service.CommentService;
 import com.jiapengcs.alpha.controller.wrapper.ResponseResultWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -22,56 +19,40 @@ import java.util.List;
  * date: 2017/11/24
  */
 @RestController
-@RequestMapping("/comment")
 @EnableLog
+@ResponseResultWrapper
 public class CommentController {
 
     @Autowired
     private CommentService commentService;
 
-    @RequestMapping("/test")
-    public String test(@RequestParam() Comment comment, HttpServletRequest request) throws PermissionException {
-        String string = "";
-        System.out.println(string);
-//        throw new PermissionException("Please login before this operation!");
-        return "hello, world";
+    @PostMapping("/comment")
+    public Comment save(@RequestBody Comment comment, HttpServletRequest request) {
+        String ip = request.getRemoteAddr();
+        String userAgent = request.getHeader("User-Agent");
+        comment.setVisitorIp(ip);
+        comment.setUserAgent(userAgent);
+        return commentService.saveComment(comment);
     }
 
-    @RequestMapping("/get")
-    @ResponseResultWrapper
-    public Comment get(HttpServletRequest request) {
-        Comment comment = new Comment(2L, "Jiapeng", "jiapeng@gmail.com", "http://jiapengcs.com",
-                "127.0.0.1", "Chrome", "Nice article!", 0L, "public");
-        return comment;
+    @DeleteMapping("/comment/{coid}")
+    public void delete(@PathVariable Long coid, HttpServletRequest request) {
+        commentService.deleteComment(coid);
     }
 
-    @RequestMapping("/page")
-    @ResponseResultWrapper
-    public Page<Comment> page(HttpServletRequest request) {
-        PageRequest pageRequest = new PageRequest(0, 10);
-        return commentService.listAllCommentsByPage(pageRequest);
+    @GetMapping("/comment/{coid}")
+    public Comment get(@PathVariable Long coid, HttpServletRequest request) {
+        return commentService.getComment(coid);
     }
 
-    @RequestMapping("/list")
-    @ResponseResultWrapper
-    public List<Comment> list(HttpServletRequest request) {
+    @GetMapping("/comment")
+    public List<Comment> list() {
         return commentService.listAllComments();
     }
 
-    @RequestMapping("/error")
-    public void error(HttpServletRequest request) throws Exception {
-        throw new Exception();
-    }
-
-    @RequestMapping("/exception")
-    public void exception(@RequestParam String test, HttpServletRequest request) throws PermissionException {
-        throw new PermissionException("permission exception");
-    }
-
-    @RequestMapping("/save")
-    public Comment save(HttpServletRequest request) {
-        Comment comment = new Comment(2L, "Jiapeng", "jiapeng@gmail.com", "http://jiapengcs.com",
-                "127.0.0.1", "Chrome", "You are cool, man!", 0L, "public");
-        return commentService.saveComment(comment);
+    @GetMapping("/comment/page")
+    public Page<Comment> page(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size, HttpServletRequest request) {
+        PageRequest pageRequest = new PageRequest(page, size);
+        return commentService.listAllCommentsByPage(pageRequest);
     }
 }

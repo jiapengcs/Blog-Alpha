@@ -30,16 +30,15 @@ CREATE TABLE IF NOT EXISTS comment (
     comment       VARCHAR (255),
     root          INTEGER,
     create_time   DATETIME,
-    update_time   DATETIME,
-    status        VARCHAR (16)
+    update_time   DATETIME
 );
 
 
 -- 表：content
 CREATE TABLE IF NOT EXISTS content (
     cid         INTEGER       PRIMARY KEY AUTOINCREMENT,
-    content_key VARCHAR (128),
-    title       VARCHAR (128),
+    content_key VARCHAR (32),
+    title       VARCHAR (64),
     thumb_image VARCHAR (128),
     content     TEXT,
     edit_type   VARCHAR (16),

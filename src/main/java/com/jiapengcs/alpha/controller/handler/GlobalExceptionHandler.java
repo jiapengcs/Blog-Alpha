@@ -41,10 +41,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ParameterException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     public ResponseResult handleParameterException(ParameterException e, HttpServletRequest request) {
-        String message = e.getMessage() != null ? e.getMessage() : ResponseCode.FORBIDDEN.getMessage();
-        return new ResponseResult(ResponseCode.FORBIDDEN.getStatus(), message, request.getRequestURI());
+        String message = e.getMessage() != null ? e.getMessage() : ResponseCode.PARAMETER_ERROR.getMessage();
+        return new ResponseResult(ResponseCode.PARAMETER_ERROR.getStatus(), message, request.getRequestURI());
     }
 
     @ExceptionHandler(PermissionException.class)
