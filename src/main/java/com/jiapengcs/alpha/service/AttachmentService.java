@@ -1,5 +1,6 @@
 package com.jiapengcs.alpha.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jiapengcs.alpha.model.Attachment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,11 +18,15 @@ public interface AttachmentService {
 
     void deleteAttachment(Long fid);
 
-    Attachment updateAttachment(Attachment attachment);
+    Attachment updateAttachment(Long fid, JSONObject params);
 
-    void getAttachment(Long fid);
+    Attachment getAttachment(Long fid);
 
     List<Attachment> listAllAttachments();
 
     Page<Attachment> listAllAttachmentsByPage(Pageable pageable);
+
+    Long getFilesTotalSize();
+
+    Long getFilesNumber();
 }

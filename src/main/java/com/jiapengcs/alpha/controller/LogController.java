@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,6 @@ import javax.servlet.http.HttpServletRequest;
  * date: 17-12-3
  */
 @RestController
-@RequestMapping("/admin/log")
 @EnableLog
 @ResponseResultWrapper
 public class LogController {
@@ -26,10 +26,10 @@ public class LogController {
     @Autowired
     private LogService logService;
 
-    @RequestMapping("/page")
-    public Page<Log> page(HttpServletRequest request) {
-        PageRequest pageRequest = new PageRequest(0, 10);
-        Page<Log> page = logService.listAllLogsByPage(pageRequest);
-        return page;
+    @RequestMapping("/log/page")
+    public Page<Log> page(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
+                              HttpServletRequest request) {
+        PageRequest pageRequest = new PageRequest(page, size);
+        return logService.listAllLogsByPage(pageRequest);
     }
 }

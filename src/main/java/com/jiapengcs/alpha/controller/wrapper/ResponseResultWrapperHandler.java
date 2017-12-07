@@ -1,7 +1,6 @@
 package com.jiapengcs.alpha.controller.wrapper;
 
 import com.alibaba.fastjson.JSON;
-import com.jiapengcs.alpha.util.constant.ResponseCode;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;

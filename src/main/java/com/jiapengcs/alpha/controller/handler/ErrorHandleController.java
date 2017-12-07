@@ -1,7 +1,7 @@
 package com.jiapengcs.alpha.controller.handler;
 
 import com.jiapengcs.alpha.aspect.log.EnableLog;
-import com.jiapengcs.alpha.util.constant.ResponseCode;
+import com.jiapengcs.alpha.controller.wrapper.ResponseCode;
 import com.jiapengcs.alpha.controller.wrapper.ResponseResult;
 import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.web.bind.annotation.RequestMapping;

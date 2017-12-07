@@ -1,4 +1,4 @@
-package com.jiapengcs.alpha.util.constant;
+package com.jiapengcs.alpha.controller.wrapper;
 
 /**
  * @author Jiapeng

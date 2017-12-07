@@ -35,8 +35,7 @@ public class UserServiceImpl implements UserService {
         } else {
             generateRegisterLock();
         }
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        user.setCreateTime(timestamp);
+        user.setCreateTime(new Timestamp(System.currentTimeMillis()));
         user.setUserRole(Constants.USER_ROLE_ADMIN);
         repository.save(user);
     }
@@ -46,8 +45,7 @@ public class UserServiceImpl implements UserService {
         User user = repository.findByUsernameAndPassword(username, password);
         if (user != null) {
             // set login time
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            user.setLastLogin(timestamp);
+            user.setLastLogin(new Timestamp(System.currentTimeMillis()));
             repository.save(user);
             return true;
         }
@@ -80,8 +78,7 @@ public class UserServiceImpl implements UserService {
      */
     private void generateRegisterLock() throws IOException {
         FileWriter writer = new FileWriter(Constants.LOCK_FILE);
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        writer.write(String.format("Blog Alpha\nTimestamp: %s\n", timestamp));
+        writer.write(String.format("Blog Alpha\nTimestamp: %s\n", new Timestamp(System.currentTimeMillis())));
         writer.write(Constants.LOCK_INFO);
         writer.close();
     }

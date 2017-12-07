@@ -55,16 +55,16 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     public Picture getPicture(Long pid) {
-        return null;
+        return repository.findOne(pid);
     }
 
     @Override
     public List<Picture> listAllPictures() {
-        return null;
+        return repository.findAll();
     }
 
     @Override
     public Page<Picture> listAllPicturesByPage(Pageable pageable) {
-        return null;
+        return repository.findAll(pageable);
     }
 }

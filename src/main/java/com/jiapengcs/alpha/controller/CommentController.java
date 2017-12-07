@@ -51,7 +51,8 @@ public class CommentController {
     }
 
     @GetMapping("/comment/page")
-    public Page<Comment> page(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size, HttpServletRequest request) {
+    public Page<Comment> page(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
+                              HttpServletRequest request) {
         PageRequest pageRequest = new PageRequest(page, size);
         return commentService.listAllCommentsByPage(pageRequest);
     }

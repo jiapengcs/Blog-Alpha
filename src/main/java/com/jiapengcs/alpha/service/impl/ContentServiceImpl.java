@@ -1,6 +1,7 @@
 package com.jiapengcs.alpha.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.jiapengcs.alpha.aspect.log.EnableLog;
 import com.jiapengcs.alpha.exception.DataAccessException;
 import com.jiapengcs.alpha.model.Content;
 import com.jiapengcs.alpha.repository.CommentRepository;
@@ -28,6 +29,7 @@ import java.util.List;
  * date: 17-12-6
  */
 @Service
+@EnableLog
 public class ContentServiceImpl implements ContentService {
 
     @Autowired
@@ -71,8 +73,7 @@ public class ContentServiceImpl implements ContentService {
         temp.setEditType(params.getString("editType") != null ? params.getString("editType") : temp.getEditType());
         temp.setFormat(params.getString("format") != null ? params.getString("format") : temp.getFormat());
         temp.setStatus(params.getString("status") != null ? params.getString("status") : temp.getStatus());
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        temp.setUpdateTime(timestamp);
+        temp.setUpdateTime(new Timestamp(System.currentTimeMillis()));
         return repository.save(temp);
     }
 
