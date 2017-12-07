@@ -1,6 +1,9 @@
 package com.jiapengcs.alpha.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jiapengcs.alpha.model.Meta;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -15,13 +18,11 @@ public interface MetaService {
 
     void deleteMeta(Long mid);
 
-    Meta updateMeta(Long mid, String metaName);
+    Meta updateMeta(Long mid, JSONObject params);
 
     Meta getMeta(Long mid);
 
-    List<Meta> listAllMetas();
-
     List<Meta> listMetasByType(String metaType);
 
-    List<Meta> listMetasByCid(Long cid);
+    List<Meta> listMetasByMids(List<Long> mids);
 }

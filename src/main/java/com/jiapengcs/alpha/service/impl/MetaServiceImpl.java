@@ -1,13 +1,21 @@
 package com.jiapengcs.alpha.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jiapengcs.alpha.aspect.log.EnableLog;
 import com.jiapengcs.alpha.exception.DataAccessException;
 import com.jiapengcs.alpha.model.Meta;
 import com.jiapengcs.alpha.repository.MetaRepository;
 import com.jiapengcs.alpha.service.MetaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -43,13 +51,12 @@ public class MetaServiceImpl implements MetaService {
     }
 
     @Override
-    public Meta updateMeta(Long mid, String metaName) {
+    public Meta updateMeta(Long mid, JSONObject params) {
         Meta meta = getMeta(mid);
         if (meta == null) {
             throw new DataAccessException("Meta does not exists!");
-        } else {
-            meta.setMetaName(metaName);
         }
+        meta.setMetaName(params.getString("metaName"));
         return repository.save(meta);
     }
 
@@ -59,18 +66,12 @@ public class MetaServiceImpl implements MetaService {
     }
 
     @Override
-    public List<Meta> listAllMetas() {
-        return repository.findAll();
-    }
-
-    @Override
     public List<Meta> listMetasByType(String metaType) {
         return repository.findAllByMetaType(metaType);
     }
 
-    //TODO
     @Override
-    public List<Meta> listMetasByCid(Long cid) {
-        return null;
+    public List<Meta> listMetasByMids(List<Long> mids) {
+        return repository.findAll(mids);
     }
 }

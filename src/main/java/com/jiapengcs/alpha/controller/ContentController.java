@@ -66,7 +66,7 @@ public class ContentController {
     }
 
     @GetMapping("/meta/{mid}/content")
-    public List<Content> pageByMeta(@PathVariable Long mid, HttpServletRequest request) {
+    public List<Content> listByMeta(@PathVariable Long mid, HttpServletRequest request) {
         List<Long> cids = relationService.listCidsByMid(mid);
         return contentService.listContentsByCids(cids);
     }
