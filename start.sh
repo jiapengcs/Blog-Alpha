@@ -11,7 +11,7 @@ echo "=== Start Deploying... ==="
 
 # if app is running, get pid then kill the process
 cd $BASE_PATH
-pid=`cat pid.txt`
+pid=`cat ${TARGET_PATH}/pid.txt`
 if [ -n "$pid" ]
 then
     echo "Instance ${APP_NAME} is still running, pid: ${pid}, killing process..."
