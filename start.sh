@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # app name, must be modified!(use for directory name, so it cannot contains special symbols)
-APP_NAME=example
-BASE_PATH=~/deploy/target
+APP_NAME=blog-alpha
+BASE_PATH=~/deploy/$APP_NAME
 
 echo "=== Start Deploying... ==="
 
