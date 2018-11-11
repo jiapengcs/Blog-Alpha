@@ -2,6 +2,7 @@
 
 # app name, must be modified!(used for directory name, so it cannot contains special symbols)
 APP_NAME=blog-alpha
+TAR_NAME=artifacts.tar.gz
 BASE_PATH=~/deploy/$APP_NAME
 BIN_PATH=$BASE_PATH/bin
 
@@ -28,7 +29,7 @@ then
 fi
 
 echo "Extracting files to ${BIN_PATH}..."
-tar -zxvf artifacts.tar.gz -C $BIN_PATH
+tar -zxvf $TAR_NAME -C $BIN_PATH
 if [ $? != 0 ]
 then
     echo "extract file failed!"
